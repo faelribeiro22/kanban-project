@@ -1,9 +1,10 @@
 import {
   NavigateBefore,
   NavigateNext,
-  RemoveRedEye
+  RemoveRedEye,
+  Edit
 } from '@styled-icons/material-outlined'
-import Button from '../Button'
+import Button from 'components/Button'
 import ReactMarkdown from 'react-markdown'
 // import remarkGfm from 'remark-gfm'
 import * as S from './styles'
@@ -19,12 +20,15 @@ const Card = ({ title, description }: CardProps) => (
       <S.Info>
         <S.TitleWrapper>
           <S.Title>{title}</S.Title>
-          <Button
-            icon={<RemoveRedEye />}
-            title="Ver card"
-            size="small"
-            minimal
-          />
+          <div>
+            <Button
+              icon={<RemoveRedEye />}
+              title="Ver card"
+              size="small"
+              minimal
+            />
+            <Button icon={<Edit />} title="Editar card" size="small" minimal />
+          </div>
         </S.TitleWrapper>
         <S.ContentDescription>
           <ReactMarkdown>{description}</ReactMarkdown>

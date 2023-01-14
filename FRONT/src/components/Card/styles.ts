@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.article`
+export const Wrapper = styled.div`
   ${({ theme }) => css`
-    position: relative;
     display: flex;
     flex-direction: column;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -10,7 +9,8 @@ export const Wrapper = styled.article`
     border-radius: 2px;
     padding: 0.5rem;
     max-width: 30rem;
-    height: 100%;
+    min-width: 20rem;
+    height: 21rem;
     background-color: ${theme.colors.white};
   `}
 `
@@ -20,7 +20,6 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
     height: 100%;
     margin: ${theme.spacings.xsmall};
   `}

@@ -1,6 +1,14 @@
 import { useLogin } from '../../hooks/useLogin'
-import { createContext, useContext, useMemo, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState
+} from 'react'
 import * as S from './styles'
+import Kanban from 'components/Kanban'
+import { Cards } from 'components/Kanban/mock'
 
 export const UserTokenContext = createContext('')
 
@@ -10,17 +18,22 @@ const Main = ({}) => {
   const { login } = useLogin()
 
   const userToken = useMemo(async () => {
-    return await login('letscode', 'lets@123')
+    try {
+      const token = await login('letscode', 'lets@123')
+      return token
+    } catch (e) {
+      throw new Error('Error to login', { cause: e })
+    }
   }, [login])
 
   console.log('login 2', userToken)
 
   return (
-    <S.Wrapper>
-      <h1>Main</h1>
-    </S.Wrapper>
-    // <UserTokenContext.Provider value={{ login }}>
-    // </UserTokenContext.Provider>
+    <UserTokenContext.Provider value={userToken}>
+      <S.Wrapper>
+        <Kanban tasks={Cards} />
+      </S.Wrapper>
+    </UserTokenContext.Provider>
   )
 }
 
